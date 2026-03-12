@@ -1,0 +1,40 @@
+{
+  "name": "shift-translate",
+  "displayName": "Shift translate",
+  "version": "0.0.1",
+  "description": "simple and easy-to-use translation plugin",
+  "author": "maocatzk@gmail.com",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "@plasmohq/storage": "^1.15.0",
+    "antd": "^5.24.2",
+    "openai": "^4.83.0",
+    "plasmo": "0.90.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "20.11.5",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "prettier": "3.2.4",
+    "tailwindcss": "^4.0.4",
+    "typescript": "5.3.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "permissions": [
+      "clipboardRead"
+    ]
+  }
+}

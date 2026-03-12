@@ -1,0 +1,212 @@
+/* Override Ant Design theme to black/white/gray */
+.sidepanel-wrapper {
+  --ant-color-primary: #000 !important;
+  --ant-color-primary-bg: #000 !important;
+  --ant-color-primary-bg-hover: #333 !important;
+  --ant-color-primary-border: #000 !important;
+  --ant-color-primary-border-hover: #333 !important;
+  --ant-color-primary-text: #000 !important;
+  --ant-color-primary-text-hover: #333 !important;
+  --ant-color-primary-text-active: #000 !important;
+  --ant-color-success: #000 !important;
+  --ant-color-warning: #000 !important;
+  --ant-color-error: #000 !important;
+  --ant-color-info: #000 !important;
+  --ant-color-link: #000 !important;
+  --ant-color-link-hover: #333 !important;
+  --ant-color-link-active: #000 !important;
+}
+
+/* Tabs */
+.sidepanel-wrapper .ant-tabs-tab {
+  background: #fff !important;
+  border: none !important;
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-tab-active {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-tabs-tab-btn:hover {
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-ink-bar {
+  background: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-nav {
+  border: none !important;
+}
+
+/* Buttons */
+.sidepanel-wrapper .ant-btn-primary {
+  background: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-btn-primary:hover {
+  background: #333 !important;
+  border-color: #333 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-btn-default {
+  background: #fff !important;
+  border-color: #000 !important;
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-btn-default:hover {
+  background: #f5f5f5 !important;
+  border-color: #000 !important;
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-btn-link {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+.sidepanel-wrapper .ant-btn-link:hover {
+  color: #333 !important;
+  text-decoration: none !important;
+}
+
+.sidepanel-wrapper .ant-btn-link .ant-btn-text {
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-btn {
+  cursor: pointer !important;
+}
+
+/* Card */
+.sidepanel-wrapper .ant-card {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+}
+
+.sidepanel-wrapper .ant-card-head {
+  border-bottom: 2px solid #000 !important;
+  background: #fff !important;
+}
+
+/* Input & TextArea */
+.sidepanel-wrapper .ant-input,
+.sidepanel-wrapper .ant-input-textarea {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+}
+
+.sidepanel-wrapper .ant-input:hover,
+.sidepanel-wrapper .ant-input-textarea:hover {
+  border-color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-input:focus,
+.sidepanel-wrapper .ant-input-textarea:focus {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Select */
+.sidepanel-wrapper .ant-select-selector {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+}
+
+.sidepanel-wrapper .ant-select:hover .ant-select-selector {
+  border-color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-select-focused .ant-select-selector {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidepanel-wrapper .ant-select-item-option-selected {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background: #f5f5f5 !important;
+}
+
+/* List */
+.sidepanel-wrapper .ant-list-item {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  margin-bottom: 8px;
+  pointer-events: auto !important;
+}
+
+.sidepanel-wrapper .ant-list-item-meta {
+  pointer-events: auto !important;
+}
+
+/* Modal */
+.sidepanel-wrapper .ant-modal {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+}
+
+.sidepanel-wrapper .ant-modal-mask {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.sidepanel-wrapper .ant-modal-header {
+  border-bottom: 2px solid #000 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+}
+
+.sidepanel-wrapper .ant-modal-footer {
+  border-top: 2px solid #000 !important;
+}
+
+.sidepanel-wrapper .ant-modal-confirm-btns .ant-btn-primary {
+  background: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-modal-confirm-btns .ant-btn-default {
+  background: #fff !important;
+  border-color: #000 !important;
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-modal-body {
+  border: none !important;
+}
+
+.sidepanel-wrapper .ant-modal-confirm-content {
+  color: #000 !important;
+  font-family: monospace !important;
+}
+
+.sidepanel-wrapper .ant-modal-confirm-title {
+  color: #000 !important;
+  font-family: monospace !important;
+  font-weight: 700 !important;
+}
+
+/* Form */
+.sidepanel-wrapper .ant-form-item-label > label {
+  font-weight: 700;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Message */
+.sidepanel-wrapper .ant-message-notice-content {
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+}
