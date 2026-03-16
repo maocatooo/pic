@@ -1,0 +1,42 @@
+/* Override Ant Design theme to black/white/gray */
+.sidepanel-wrapper {
+  --ant-color-primary: #000 !important;
+  --ant-color-primary-bg: #000 !important;
+  --ant-color-primary-bg-hover: #333 !important;
+  --ant-color-primary-border: #000 !important;
+  --ant-color-primary-border-hover: #333 !important;
+  --ant-color-primary-text: #000 !important;
+  --ant-color-primary-text-hover: #333 !important;
+  --ant-color-primary-text-active: #000 !important;
+  --ant-color-success: #000 !important;
+  --ant-color-warning: #000 !important;
+  --ant-color-error: #000 !important;
+  --ant-color-info: #000 !important;
+  --ant-color-link: #000 !important;
+  --ant-color-link-hover: #333 !important;
+  --ant-color-link-active: #000 !important;
+}
+
+/* Tabs */
+.sidepanel-wrapper .ant-tabs-tab {
+  background: #fff !important;
+  border: none !important;
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-tab-active {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.sidepanel-wrapper .ant-tabs-tab-btn:hover {
+  color: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-ink-bar {
+  background: #000 !important;
+}
+
+.sidepanel-wrapper .ant-tabs-nav {
+  border: none !important;
+}

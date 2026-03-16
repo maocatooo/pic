@@ -1,0 +1,32 @@
+/* ScrollableDiv.module.css */
+.scrollableDiv {
+  overflow-y: auto;
+  position: fixed;
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 0;
+  font-size: 13px;
+  z-index: 9999;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #555 transparent;
+}
+
+/* Chrome/Edge/Safari */
+.scrollableDiv::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollableDiv::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollableDiv::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+.scrollableDiv::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
