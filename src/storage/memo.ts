@@ -68,5 +68,9 @@ const deleteMemo = async (id: string): Promise<boolean> => {
   return true
 }
 
-export { getMemos, setMemos, addMemo, updateMemo, deleteMemo }
+const clearMemos = async (): Promise<void> => {
+  await storage.set(memoKey, [])
+}
+
+export { getMemos, setMemos, addMemo, updateMemo, deleteMemo, clearMemos }
 export type { Memo }

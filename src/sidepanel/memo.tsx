@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 
 import { Storage } from "@plasmohq/storage"
 
-import { deleteMemo, getMemos, updateMemo, type Memo } from "~/storage/memo"
+import { clearMemos, deleteMemo, getMemos, updateMemo, type Memo } from "~/storage/memo"
 
 const { Search } = Input
 const TextArea = Input.TextArea
@@ -25,8 +25,6 @@ export const MemoPage = () => {
   const [deleteMemoId, setDeleteMemoId] = useState<string | null>(null)
   const [expandedMemoId, setExpandedMemoId] = useState<string | null>(null)
   const [messageApi, contextHolder] = message.useMessage()
-  const [showChatButton, setShowChatButton] = useState(true)
-  const [chatInput, setChatInput] = useState("")
 
   useEffect(() => {
     loadMemos()
@@ -105,23 +103,44 @@ export const MemoPage = () => {
     return new Date(timestamp).toLocaleString()
   }
 
-  const handleChatSubmit = async () => {
-    if (!chatInput.trim()) {
-      messageApi.warning("Input cannot be empty")
+  const handleExportCSV = async () => {
+    if (memos.length === 0) {
+      messageApi.warning("No memos to export")
       return
     }
-    
-    // Check for duplicate before adding
-    const isDuplicate = memos.some((m) => m.content === chatInput.trim())
-    if (isDuplicate) {
-      messageApi.warning("This memo already exists")
-      setChatInput("")
+
+    const csvContent = memos
+      .map((memo) => {
+        const timestamp = formatTime(memo.createdAt)
+        const content = memo.content.replace(/"/g, '""')
+        return `"${timestamp}","${content}"`
+      })
+      .join("\n")
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `memos_${new Date().toISOString().slice(0, 10)}.csv`
+    link.click()
+    URL.revokeObjectURL(url)
+
+    messageApi.success("Memos exported")
+  }
+
+  const handleClearMemos = () => {
+    if (memos.length === 0) {
+      messageApi.warning("No memos to clear")
       return
     }
-    
-    // TODO: Implement chat/AI functionality here
-    messageApi.info("Chat feature coming soon: " + chatInput)
-    setChatInput("")
+    setDeleteMemoId("CLEAR_ALL")
+  }
+
+  const confirmClearAll = async () => {
+    await clearMemos()
+    await loadMemos()
+    setDeleteMemoId(null)
+    messageApi.success("All memos cleared")
   }
 
   return (
@@ -142,8 +161,40 @@ export const MemoPage = () => {
         }}
         title={
           <div
-            style={{ fontWeight: 700, fontSize: 16, fontFamily: "monospace" }}>
+            style={{ fontWeight: 700, fontSize: 16, fontFamily: "monospace", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             {">"} MEMOS_
+            <div style={{ display: "flex", gap: 8 }}>
+              <Button
+                onClick={handleExportCSV}
+                style={{
+                  ...pixelBorderStyle,
+                  background: "#fff",
+                  color: "#000",
+                  fontWeight: 700,
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  padding: "4px 8px",
+                  height: "auto",
+                  borderRadius: 0
+                }}>
+                [EXPORT CSV]
+              </Button>
+              <Button
+                onClick={handleClearMemos}
+                style={{
+                  ...pixelBorderStyle,
+                  background: "#000",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  padding: "4px 8px",
+                  height: "auto",
+                  borderRadius: 0
+                }}>
+                [CLEAR]
+              </Button>
+            </div>
           </div>
         }>
         <div style={{ marginBottom: 16 }}>
@@ -333,13 +384,13 @@ export const MemoPage = () => {
         <Modal
           title={
             <span style={{ fontFamily: "monospace", fontWeight: 700 }}>
-              DELETE_CONFIRM
+              {deleteMemoId === "CLEAR_ALL" ? "> CLEAR_ALL_" : "DELETE_CONFIRM"}
             </span>
           }
           open={!!deleteMemoId}
-          onOk={confirmDelete}
+          onOk={deleteMemoId === "CLEAR_ALL" ? confirmClearAll : confirmDelete}
           onCancel={cancelDelete}
-          okText="[ DELETE ]"
+          okText={deleteMemoId === "CLEAR_ALL" ? "[ CLEAR ]" : "[ DELETE ]"}
           cancelText="[ CANCEL ]"
           okButtonProps={{
             style: {
@@ -360,83 +411,12 @@ export const MemoPage = () => {
             }
           }}>
           <span style={{ fontFamily: "monospace" }}>
-            Are you sure you want to delete this memo?
+            {deleteMemoId === "CLEAR_ALL"
+              ? "Are you sure you want to clear all memos?"
+              : "Are you sure you want to delete this memo?"}
           </span>
         </Modal>
       </Card>
-
-      {/* Floating Chat Button / Chat Input */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 16,
-          left: 16,
-          right: 16
-        }}>
-        {showChatButton ? (
-          <Button
-            onClick={() => setShowChatButton(false)}
-            style={{
-              ...pixelBorderStyle,
-              background: "#000",
-              color: "#fff",
-              fontWeight: 700,
-              fontFamily: "monospace",
-              width: "100%",
-              height: 44,
-              fontSize: 14,
-              borderRadius: 0
-            }}>
-            {">"} CHAT_
-          </Button>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              background: "#fff",
-              border: "1px solid #000"
-            }}>
-            <Input
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              onPressEnter={handleChatSubmit}
-              placeholder="Type your message..."
-              style={{
-                flex: 1,
-                border: "none",
-                borderRadius: 0,
-                fontFamily: "monospace"
-              }}
-              autoFocus
-            />
-            <Button
-              onClick={handleChatSubmit}
-              style={{
-                ...pixelBorderStyle,
-                background: "#000",
-                color: "#fff",
-                fontWeight: 700,
-                fontFamily: "monospace",
-                borderRadius: 0
-              }}>
-              SEND
-            </Button>
-            <Button
-              onClick={() => setShowChatButton(true)}
-              style={{
-                ...pixelBorderStyle,
-                background: "#fff",
-                color: "#000",
-                fontWeight: 700,
-                fontFamily: "monospace",
-                borderRadius: 0
-              }}>
-              ×
-            </Button>
-          </div>
-        )}
-      </div>
     </div>
   )
 }
