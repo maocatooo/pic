@@ -1,8 +1,8 @@
 {
-  "name": "shift-translate",
-  "displayName": "Shift translate",
+  "name": "d-picot",
+  "displayName": "D-Picot",
   "version": "0.0.1",
-  "description": "simple and easy-to-use translation plugin",
+  "description": "Save fragmented knowledge from text selections using an extension on Doubao.",
   "author": "maocatzk@gmail.com",
   "scripts": {
     "dev": "plasmo dev",

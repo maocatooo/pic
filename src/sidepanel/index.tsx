@@ -2,7 +2,6 @@ import { ConfigProvider, Tabs } from "antd"
 import { useState } from "react"
 
 import { MemoPage } from "~/sidepanel/memo"
-import { SettingsPage } from "~/sidepanel/settings"
 
 import "./sidepanel.css"
 
@@ -70,21 +69,6 @@ function SidePanel() {
                 </span>
               ),
               children: <MemoPage />
-            },
-            {
-              key: "settings",
-              label: (
-                <span
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 700,
-                    fontFamily: "monospace",
-                    color: activeTab === "settings" ? "#fff" : "#000"
-                  }}>
-                  [ SETTINGS ]
-                </span>
-              ),
-              children: <SettingsPage />
             }
           ]}
           style={{ background: "#fff" }}
